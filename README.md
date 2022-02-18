@@ -78,7 +78,7 @@ sudo docker swarm init --advertise-addr  xxx.xxx.xxx.xxx
 
 - como resultado para agregar un trabajador a este enjambre del manager principal, ejecutamos el siguiente comando ejemplo dentro los workes o nodos:
 ```bash
-sudo docker swarm join --token cualquiertexto xxx.xxx.xxx.xxx:2377
+sudo docker swarm join --token llave_token xxx.xxx.xxx.xxx:2377
 ```
 
 - Agregar otro manager ejecutamos el siguiente comando en el manager principal para generar el token con que los otros manager se van unir:
@@ -87,7 +87,7 @@ sudo docker swarm join-token manager
 ````
 - como resultado para agregar un trabajador a este enjambre, ejecute el siguiente comando ejemplo dentro los managers :
 ```bash
-sudo docker swarm join --token ualquiertexto xxx.xxx.xxx.xxx:2377
+sudo docker swarm join --token llave_toke xxx.xxx.xxx.xxx:2377
 ```
 
 - Para listar nodos y manager ejecutamos el siguiente comando
