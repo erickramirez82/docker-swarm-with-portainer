@@ -63,28 +63,9 @@ sudo init 6
 
 ```bash
 docker -v
+docker compose version
 docker ps  
 ```
-
-
-## Instalar docker compose version 2
-
-- Ejecute este comando para descargar la versión estable actual de Docker Compose:
-```bash
- sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-```
-
-- Aplicar permisos ejecutables al binario:
-
-```bash
-sudo chmod +x /usr/local/bin/docker-compose
-````
-- Pruebe la instalación.
-```bash
-docker-compose --version
-```
-
-Resultado Docker Compose version v2.2.3
 
 ## Docker swarm 
 
