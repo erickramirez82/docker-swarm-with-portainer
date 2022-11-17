@@ -46,8 +46,26 @@ echo \
 
 ```bash
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
+- Para que no tengamos que utilizar sudo cada vez que queramos utilizar Docker, hacemos lo siguiente:
+```bash 
+sudo usermod -aG docker <username> 
+```
+
+- Recomienda reiniciar maquina
+
+```bash 
+sudo init 6
+```
+
+- Probar que funciona 
+
+```bash
+docker -v
+docker ps  
+```
+
 
 ## Instalar docker compose version 2
 
