@@ -69,7 +69,7 @@ docker ps
 
 ## Docker swarm 
 
-![Image text](https://docs.docker.com/engine/swarm/images/swarm-diagram.png)
+![Image text]([https://docs.docker.com/engine/swarm/images/swarm-diagram.png](https://docs.docker.com/engine/swarm/images/swarm-diagram.webp))
 -  Inicializar swarm manager principal la ip es la corresponde a la maquina hemos escogido como manager lider obtener podemos ejecutar el comando ip -a
 ```bash
 sudo docker swarm init --advertise-addr  xxx.xxx.xxx.xxx
