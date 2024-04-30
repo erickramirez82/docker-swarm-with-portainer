@@ -14,7 +14,7 @@ Docker Swarm with portainer
 - Desinstalar cualquier version venga por defecto en la maquina de linux  
 
 ```bash
-sudo apt-get remove docker docker-engine docker.io containerd runc
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 ````
 
 - Actualice el índice de paquetes apt e instale paquetes para permitir que apt use un repositorio a través de HTTPS:
