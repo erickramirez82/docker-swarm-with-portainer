@@ -14,7 +14,7 @@ Docker Swarm with portainer
 - Desinstalar cualquier version venga por defecto en la maquina de linux  
 
 ```bash
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc docker-buildx podman-docker containerd runc | cut -f1)
 ````
 
 - Actualice el índice de paquetes apt e instale paquetes para permitir que apt use un repositorio a través de HTTPS:
@@ -32,6 +32,8 @@ sudo install -m 0755 -d /etc/apt/keyrings
 - Agregue la clave GPG oficial de Docker:
 
 ```bash
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
@@ -39,16 +41,20 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 - Utilice el siguiente comando para configurar el repositorio estable.
 ```bash
 # Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
 ```
 - Actualice el índice del paquete apt e instale la última versión de Docker Engine y containerd, o vaya al siguiente paso para instalar una versión específica:
 
 ```bash
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 - Para que no tengamos que utilizar sudo cada vez que queramos utilizar Docker, hacemos lo siguiente:
 ```bash 
@@ -58,7 +64,7 @@ sudo usermod -aG docker <username>
 - Recomienda reiniciar maquina
 
 ```bash 
-sudo init 6
+sudo reboot
 ```
 
 - Probar que funciona 
